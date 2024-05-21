@@ -6,12 +6,15 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  text = '';
+  text = 'hello';
   title = 'car-sell';
+
+  displayText = false;
+
   paragrapheId = 0;
 
   onClickButton(): void {
     console.log('Hello World');
-    this.text = 'Hello World au clic';
+    this.displayText = this.displayText ? false : true;
   }
 }

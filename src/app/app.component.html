@@ -1,21 +1,5 @@
 <app-header></app-header>
-<p
-  [id]="paragrapheId"
-  [ngClass]="{
-    'text-primary display-1': true,
-    'text-danger': false,
-    'display-1': true
-  }"
-  [attr.test]="'value'"
->
-  Hello World
-</p>
-<p>{{ text }}</p>
-<button class="btn btn-primary" (click)="onClickButton()">Clique ici</button>
-<input
-  type="text"
-  name="text"
-  class="from-control"
-  placeholder="Ecrivez ici !"
-  [(ngModel)]="text"
-/>
+<button type="button" class="btn btn-primary" (click)="onClickButton()">
+  Toggle
+</button>
+<p *ngIf="displayText">{{ text }}</p>
