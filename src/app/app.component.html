@@ -1,1 +1,12 @@
 <app-header></app-header>
+<p
+  [id]="paragrapheId"
+  [ngClass]="{
+    'text-primary display-1': true,
+    'text-danger': false,
+    'display-1': true
+  }"
+  [attr.test]="'value'"
+>
+  Hello World
+</p>
