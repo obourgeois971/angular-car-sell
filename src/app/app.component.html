@@ -12,3 +12,10 @@
 </p>
 <p>{{ text }}</p>
 <button class="btn btn-primary" (click)="onClickButton()">Clique ici</button>
+<input
+  type="text"
+  name="text"
+  class="from-control"
+  placeholder="Ecrivez ici !"
+  [(ngModel)]="text"
+/>
