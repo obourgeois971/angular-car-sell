@@ -4,15 +4,14 @@
       <div class="bg-white shadow rounded p-4">
         <h1 class="display-6 text-dark">Créer une annonce</h1>
         <hr class="bg-dark mb-5" />
-        <form #offerForm="ngForm" (ngSubmit)="onSubmitOfferForm(offerForm)">
+        <form [formGroup]="offerForm" (ngSubmit)="onSubmitOfferForm()">
           <div class="form-group mb-3">
             <label for="offerTitleInput">Titre</label>
             <input
               type="text"
               id="offerTitleInput"
               class="form-control"
-              name="title"
-              ngModel
+              formControlName="title"
             />
           </div>
           <div class="form-group mb-3">
@@ -21,8 +20,7 @@
               type="text"
               id="offerBrandInput"
               class="form-control"
-              name="brand"
-              ngModel
+              formControlName="brand"
             />
           </div>
           <div class="form-group mb-3">
@@ -31,8 +29,7 @@
               type="text"
               id="offerModelInput"
               class="form-control"
-              name="model"
-              ngModel
+              formControlName="model"
             />
           </div>
           <div class="form-group mb-3">
@@ -41,8 +38,7 @@
               id="offerDescriptionInput"
               class="w-100 form-control"
               rows="5"
-              name="description"
-              ngModel
+              formControlName="description"
             ></textarea>
           </div>
           <div class="form-group mb-3">
@@ -51,8 +47,7 @@
               type="number"
               id="offerPriceInput"
               class="form-control"
-              name="price"
-              ngModel
+              formControlName="price"
             />
           </div>
           <div class="d-flex">
