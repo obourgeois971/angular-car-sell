@@ -7,30 +7,9 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
-  cars = [
-    {
-      id: 0,
-      brand: 'Renault',
-      model: 'Laguna',
-      color: 'gray',
-    },
-    {
-      id: 1,
-      brand: 'Peugeot',
-      model: '508',
-      color: 'red',
-    },
-    {
-      id: 2,
-      brand: 'Opel',
-      model: 'Corsa',
-      color: 'blue',
-    },
-  ];
-
   offerForm!: FormGroup;
 
-  currentCar: any;
+  offers: any[] = [];
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -49,6 +28,8 @@ export class DashboardComponent implements OnInit {
   }
   onSubmitOfferForm(): void {
     console.log(this.offerForm.invalid);
-    // console.log(this.offerForm.value);
+    this.offers.push(this.offerForm.value);
+    this.offerForm.reset();
+    console.log(this.offers);
   }
 }
