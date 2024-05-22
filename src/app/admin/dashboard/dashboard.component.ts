@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -35,5 +36,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     const carId = this.activatedRoute.snapshot.paramMap.get('id');
     this.currentCar = this.cars.find((el) => el.id === +(<string>carId));
+  }
+
+  onSubmitOfferForm(form: NgForm): void {
+    console.log(form.value);
   }
 }
