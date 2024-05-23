@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Offer } from '../interfaces/offer';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,8 @@ export class OffersService {
     },
   ];
 
+  offerSubject: BehaviorSubject<Offer[]> = new BehaviorSubject(<Offer[]>[]);
+
   constructor() {}
 
   /*getOffers(): Promise<Offer[]> {
@@ -30,17 +32,22 @@ export class OffersService {
     });
   }*/
 
-  getOffers(): Observable<Offer[]> {
-    return new Observable((observer) => {
+  dispacheOffers() {
+    this.offerSubject.next(this.offers);
+  }
+
+  // getOffers(): Observable<Offer[]> {
+  /*return new Observable((observer) => {
       if (this.offers.length === 0) {
         observer.error(new Error('No offer registered'));
       }
-      setTimeout(() => {
+      setInterval(() => {
         observer.next(this.offers);
         observer.complete();
-      }, 2000);
-    });
-  }
+      }, 1000);
+    });*/
+
+  // }
 
   createOffer(offer: Offer): Offer[] {
     this.offers.push(offer);

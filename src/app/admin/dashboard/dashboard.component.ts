@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Offer } from '../../interfaces/offer';
 import { OffersService } from '../../services/offers.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   offerForm!: FormGroup;
 
   offers: Offer[] = [];
+
+  subscription!: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,7 +25,7 @@ export class DashboardComponent implements OnInit {
     this.initOfferForm();
     // Initialisation des données
     // this.offers = this.offersService.getOffers();
-    this.offersService.getOffers().subscribe({
+    this.subscription = this.offersService.offerSubject.subscribe({
       next: (offers: Offer[]) => {
         console.log('NEXT');
 
@@ -35,6 +38,7 @@ export class DashboardComponent implements OnInit {
         console.error(error);
       },
     });
+    this.offersService.dispacheOffers();
     /*this.offersService
       .getOffers()
       .then((offers: Offer[]) => {
@@ -88,5 +92,9 @@ export class DashboardComponent implements OnInit {
   onDeleteOffer(index: number): void {
     // this.offers.splice(index, 1);
     this.offers = this.offersService.deleteOffer(index);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
