@@ -7,7 +7,7 @@ import { Offer } from '../interfaces/offer';
 export class OffersService {
   private offers: Offer[] = [
     {
-      title: 'Nouvelle annonce',
+      title: 'nouvelle annonce',
       brand: 'Renault',
       model: 'Kangoo',
       description: 'Hello world',
