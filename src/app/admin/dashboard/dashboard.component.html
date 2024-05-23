@@ -5,6 +5,7 @@
         <h1 class="display-6 text-dark">Créer une annonce</h1>
         <hr class="bg-dark mb-5" />
         <form [formGroup]="offerForm" (ngSubmit)="onSubmitOfferForm()">
+          <input type="number" formControlName="index" hidden />
           <div class="form-group mb-3">
             <label for="offerTitleInput">Titre</label>
             <input
@@ -76,6 +77,7 @@
               <th scope="col">Titre</th>
               <th scope="col">Voiture</th>
               <th scope="col">Prix</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -84,6 +86,15 @@
               <td>{{ offer.title }}</td>
               <td>{{ offer.brand }} {{ offer.brand }}</td>
               <td>{{ offer.price }}</td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  (click)="onEditOffer(offer, i)"
+                >
+                  Modifier
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
