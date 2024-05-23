@@ -21,7 +21,16 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.initOfferForm();
     // Initialisation des données
-    this.offers = this.offersService.getOffers();
+    // this.offers = this.offersService.getOffers();
+    this.offersService
+      .getOffers()
+      .then((offers: Offer[]) => {
+        this.offers = offers;
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => console.log("It's ok"));
   }
 
   initOfferForm(): void {
