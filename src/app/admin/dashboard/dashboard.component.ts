@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Offer } from '../../interfaces/offer';
 import { OffersService } from '../../services/offers.service';
 
@@ -22,7 +22,20 @@ export class DashboardComponent implements OnInit {
     this.initOfferForm();
     // Initialisation des données
     // this.offers = this.offersService.getOffers();
-    this.offersService
+    this.offersService.getOffers().subscribe({
+      next: (offers: Offer[]) => {
+        console.log('NEXT');
+
+        this.offers = this.offers;
+      },
+      complete: () => {
+        console.log('Observable complete');
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+    /*this.offersService
       .getOffers()
       .then((offers: Offer[]) => {
         this.offers = offers;
@@ -30,7 +43,7 @@ export class DashboardComponent implements OnInit {
       .catch((error) => {
         console.error(error);
       })
-      .finally(() => console.log("It's ok"));
+      .finally(() => console.log("It's ok"));*/
   }
 
   initOfferForm(): void {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Offer } from '../interfaces/offer';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class OffersService {
 
   constructor() {}
 
-  getOffers(): Promise<Offer[]> {
+  /*getOffers(): Promise<Offer[]> {
     // return this.offers;
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -26,6 +27,18 @@ export class OffersService {
         }
         resolve(this.offers);
       }, 3000);
+    });
+  }*/
+
+  getOffers(): Observable<Offer[]> {
+    return new Observable((observer) => {
+      if (this.offers.length === 0) {
+        observer.error(new Error('No offer registered'));
+      }
+      setTimeout(() => {
+        observer.next(this.offers);
+        observer.complete();
+      }, 2000);
     });
   }
 
