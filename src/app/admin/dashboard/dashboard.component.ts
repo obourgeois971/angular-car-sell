@@ -52,4 +52,8 @@ export class DashboardComponent implements OnInit {
     // les  ... pour déconstruire l'élément
     this.offerForm.setValue({ ...offer, index });
   }
+
+  onDeleteOffer(index: number): void {
+    this.offers.splice(index, 1);
+  }
 }
